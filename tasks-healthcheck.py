@@ -32,11 +32,11 @@ def generateTaskGroup(numTasks, interval, timeout):
       ],
       "health_check": {
         "type": "COMMAND",
-        "grace_period_seconds": 180,
+        "grace_period_seconds": 10,
         "interval_seconds": interval,
         "consecutive_failures": 5,
         "timeout_seconds": timeout,
-        "delay_seconds": random.random() * 10.37,
+        "delay_seconds": random.random() * 10.37 + 10.,
         "command": {
           "value": "true"
         }
@@ -58,7 +58,7 @@ def generateTaskGroup(numTasks, interval, timeout):
     } for i in range(numTasks) ] }
 
 if len(sys.argv) != 4:
-  sys.exit('The correct number of arguments was not provided')
+  sys.exit('Usage: ./tasks-healthcheck.py [num_tasks] [healthcheck_interval] [healthcheck_timeout]')
 
 numTasks = int(sys.argv[1])
 interval = float(sys.argv[2])
