@@ -1,0 +1,13 @@
+== Test: maximum check throughput ==
+* Requirements
+  - Should achieve uniform distribution of check container launches over time.
+    + Randomized delay can do this.
+  - Set zero interval, timeout long enough that no timeouts will occur.
+  - Measure check container time-to-launch
+* Test parameters
+  - Vary number of concurrent tasks
+    + Powers of two? 1, 2, 4, 8, etc. concurrent tasks, up to 256?
+
+
+== Test: check response time ==
+
