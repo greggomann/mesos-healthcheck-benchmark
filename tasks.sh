@@ -1,3 +1,5 @@
+#!/usr/bin/env bash
+
 JQOUTPUT=`echo $1 | jq '
 def range(n):
   [0, n] | while(.[0] < .[1]; [.[0] + 1, .[1]]) | .[0];
