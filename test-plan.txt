@@ -11,4 +11,4 @@
 
 
 == Test: check response time ==
-
+* Calculate check container launch time from each set of logs.
