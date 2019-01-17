@@ -41,10 +41,10 @@ for container_id in start_times.keys():
     time_delta = datetime.datetime.combine(date, finish_times[container_id]) - datetime.datetime.combine(date, start_times[container_id])
     response_times.append(time_delta.total_seconds())
 
-print('Response times:')
-print(response_times)
+# print('Response times:')
+# print(response_times)
 
-print('\nN = {}'.format(len(response_times)))
+# print('\nN = {}'.format(len(response_times)))
 
 total = 0.
 for duration in response_times:
@@ -52,10 +52,12 @@ for duration in response_times:
 
 mean = total / len(response_times)
 
-print('\nMean: {}'.format(mean))
+# print('\nMean: {}'.format(mean))
 
 total = 0.
 for duration in response_times:
   total += (duration - mean)**2
 
-print('\nStandard deviation: {}'.format(math.sqrt(total / len(response_times))))
+# print('\nStandard deviation: {}'.format(math.sqrt(total / len(response_times))))
+
+print(mean)
