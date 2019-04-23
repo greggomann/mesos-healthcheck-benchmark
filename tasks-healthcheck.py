@@ -32,11 +32,11 @@ def generateTaskGroup(numTasks, interval, timeout):
       ],
       "health_check": {
         "type": "COMMAND",
-        "grace_period_seconds": 10,
-        "interval_seconds": interval,
-        "consecutive_failures": 5,
+        "grace_period_seconds": 0,
+        "interval_seconds": interval + random.random() * interval * .20,
+        "consecutive_failures": 20,
         "timeout_seconds": timeout,
-        "delay_seconds": random.random() * 10.37 + 10.,
+        "delay_seconds": random.random() * 15,
         "command": {
           "value": "true"
         }
