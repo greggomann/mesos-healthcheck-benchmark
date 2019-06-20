@@ -5,6 +5,8 @@
 AGENT_IP=$1
 CHECK_INTERVAL=$2
 CHECK_TIMEOUT=$3
+LEFT=$4
+RIGHT=$5
 
 GREEN='\033[0;32m'
 RED='\033[0;31m'
@@ -32,8 +34,6 @@ if [ $? -ne 0 ]; then
   run_command $AGENT_IP 'sudo yum -y install perf 1>/dev/null'
 fi
 
-LEFT=200
-RIGHT=300
 while (( $LEFT < $RIGHT )); do
   NUM_TASKS=$(( $LEFT + ($RIGHT - $LEFT)/2 ))
   LOG_FILE="run-test-check-throughput-$NUM_TASKS.txt"

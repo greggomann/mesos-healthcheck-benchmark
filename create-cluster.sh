@@ -2,12 +2,14 @@
 
 eval $(maws login 273854932432_Mesosphere-PowerUser)
 
-INSTALLER_URL=${INSTALLER_URL:-https://s3.amazonaws.com/downloads.mesosphere.io/dcos-enterprise/testing/pull/5608/commit/99de8a3e4d08ee68301c1ddd6d943d9a2d33974e/dcos_generate_config.ee.sh}
+INSTALLER_URL=${INSTALLER_URL:-https://s3.amazonaws.com/downloads.mesosphere.io/dcos-enterprise/testing/master/commit/4d4f3feed3047ac66ff511b0f92a6e03f4695dd8/dcos_generate_config.ee.sh}
 AWS_KEY_NAME=${AWS_KEY_NAME:-default}
-SSH_KEY=${SSH_KEY:-"${HOME}/.ssh/mesosphere_shared"}
-INSTANCE_TYPE=${INSTANCE_TYPE:-m4.xlarge}
+SSH_KEY=${SSH_KEY:-"${HOME}/.ssh/mesosphere_shared_aws.pem"}
+INSTANCE_TYPE=${INSTANCE_TYPE:-m4.large}
 CHECK_INTERVAL=${CHECK_INTERVAL:-60}
 CHECK_TIMEOUT=${CHECK_TIMEOUT:-30}
+LEFT_LIMIT=300
+RIGHT_LIMIT=500
 
 RED='\033[0;31m'
 GREEN='\033[0;32m'
@@ -42,7 +44,7 @@ if [ ! -f ${CLUSTER_CONFIG} ]; then
   cat <<-EOF >${CLUSTER_CONFIG}
 		---
 		launch_config_version: 1
-		deployment_name: gaston-dcos-113s-strict-$(echo ${INSTANCE_TYPE}|sed -e 's/\./-/g')-${RANDOM}
+		deployment_name: greg-dcos-113s-strict-$(echo ${INSTANCE_TYPE}|sed -e 's/\./-/g')-${RANDOM}
 		installer_url: ${INSTALLER_URL}
 		platform: aws
 		provider: onprem
@@ -151,4 +153,4 @@ run_command ${MASTER_IP} "cd mesos-healthcheck-benchmark && sudo -E /opt/mesosph
 
 message "Downloading results from master..."
 copy_file "centos@${MASTER_IP}:mesos-healthcheck-benchmark/results-*.tgz" "${RESULTS_DIR}/"
-run_command ${MASTER_IP} "rm -f mesos-healthcheck-benchmark/results-*.tgz"
+# run_command ${MASTER_IP} "rm -f mesos-healthcheck-benchmark/results-*.tgz"
