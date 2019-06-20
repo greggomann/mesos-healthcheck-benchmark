@@ -19,7 +19,7 @@ def generateTaskGroup(numTasks, interval, timeout):
           "name": "cpus",
           "type": "SCALAR",
           "scalar": {
-            "value": 0.01
+            "value": 0.001
           }
         },
         {
