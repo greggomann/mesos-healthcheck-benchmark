@@ -60,8 +60,8 @@ while (( $LEFT < $RIGHT )); do
 
   SCHEDULER_PID=$!
 
-  # Wait 5 minutes or until a health check fails.
-  for (( j = 0; j < 6; j++ )); do
+  # Wait 30 minutes or until a health check fails.
+  for (( j = 0; j < 31; j++ )); do
     sleep 30
     echo -n "... "
     grep "healthy?: 0" $LOG_FILE &>/dev/null
