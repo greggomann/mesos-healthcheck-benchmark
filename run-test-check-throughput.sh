@@ -56,7 +56,7 @@ while (( $LEFT < $RIGHT )); do
   export MESOS_HTTP_AUTHENTICATEE="com_mesosphere_dcos_http_Authenticatee"
   export MESOS_MODULES='{"libraries":[{"file":"/opt/mesosphere/lib/mesos/libdcos_security.so","modules":[{"name":"com_mesosphere_dcos_http_Authenticatee"}]}]}'
   export MESOS_VERBOSE=1
-  /opt/mesosphere/active/mesos/bin/mesos-execute --principal=mesos-execute --master=leader.mesos:5050 --secret="${DCOS_SERVICE_ACCOUNT_CREDENTIAL}" --task_group="$PWD/task-group-$NUM_TASKS.json" &>>$LOG_FILE&
+  /opt/mesosphere/active/mesos/bin/mesos-execute --principal=mesos-execute --master=leader.mesos:5050 --secret="file://$PWD/${DCOS_SERVICE_ACCOUNT_CREDENTIAL}" --task_group="file://$PWD/task-group-$NUM_TASKS.json" &>>$LOG_FILE&
 
   SCHEDULER_PID=$!
 
