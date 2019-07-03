@@ -2,14 +2,14 @@
 
 eval $(maws login 273854932432_Mesosphere-PowerUser)
 
-INSTALLER_URL=${INSTALLER_URL:-https://s3.amazonaws.com/downloads.mesosphere.io/dcos-enterprise/testing/master/commit/4d4f3feed3047ac66ff511b0f92a6e03f4695dd8/dcos_generate_config.ee.sh}
+INSTALLER_URL=${INSTALLER_URL:-https://s3.amazonaws.com/downloads.mesosphere.io/dcos-enterprise/testing/master/commit/e17a56b4343a9b415785254f4beaadb9277fee05/dcos_generate_config.ee.sh}
 AWS_KEY_NAME=${AWS_KEY_NAME:-default}
 SSH_KEY=${SSH_KEY:-"${HOME}/.ssh/mesosphere_shared_aws.pem"}
 INSTANCE_TYPE=${INSTANCE_TYPE:-m4.xlarge}
 CHECK_INTERVAL=${CHECK_INTERVAL:-60}
 CHECK_TIMEOUT=${CHECK_TIMEOUT:-30}
-LEFT_LIMIT=10
-RIGHT_LIMIT=60
+LEFT_LIMIT=100
+RIGHT_LIMIT=300
 
 RED='\033[0;31m'
 GREEN='\033[0;32m'

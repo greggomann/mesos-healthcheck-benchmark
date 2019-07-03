@@ -65,9 +65,9 @@ while (( $LEFT < $RIGHT )); do
     sleep 30
     echo -n "... "
     grep "healthy?: 0" $LOG_FILE &>/dev/null
-    #if [[ $? -eq 0 ]]; then
-    #  break
-    #fi
+    if [[ $? -eq 0 ]]; then
+      break
+    fi
   done
   echo "DONE!"
 
