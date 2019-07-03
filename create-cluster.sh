@@ -8,8 +8,9 @@ SSH_KEY=${SSH_KEY:-"${HOME}/.ssh/mesosphere_shared_aws.pem"}
 INSTANCE_TYPE=${INSTANCE_TYPE:-m4.xlarge}
 CHECK_INTERVAL=${CHECK_INTERVAL:-60}
 CHECK_TIMEOUT=${CHECK_TIMEOUT:-30}
-LEFT_LIMIT=100
-RIGHT_LIMIT=300
+LEFT_LIMIT=10
+RIGHT_LIMIT=50
+BREAK_ON_FAILURE=1
 
 RED='\033[0;31m'
 GREEN='\033[0;32m'
@@ -150,7 +151,7 @@ run_command ${MASTER_IP} "/opt/mesosphere/bin/dcos-shell git clone https://githu
 run_command ${MASTER_IP} "cd mesos-healthcheck-benchmark && git checkout dev"
 
 message "Running benchmark suite from master..."
-run_command ${MASTER_IP} "cd mesos-healthcheck-benchmark && sudo -E /opt/mesosphere/bin/dcos-shell ./run-test-check-throughput.sh ${AGENT_IP} ${CHECK_INTERVAL} ${CHECK_TIMEOUT} ${LEFT_LIMIT} ${RIGHT_LIMIT}"
+run_command ${MASTER_IP} "cd mesos-healthcheck-benchmark && sudo -E /opt/mesosphere/bin/dcos-shell ./run-test-check-throughput.sh ${AGENT_IP} ${CHECK_INTERVAL} ${CHECK_TIMEOUT} ${LEFT_LIMIT} ${RIGHT_LIMIT} ${BREAK_ON_FAILURE}"
 
 message "Downloading results from master..."
 copy_file "centos@${MASTER_IP}:mesos-healthcheck-benchmark/results-*.tgz" "${RESULTS_DIR}/"

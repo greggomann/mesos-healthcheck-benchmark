@@ -7,6 +7,7 @@ CHECK_INTERVAL=$2
 CHECK_TIMEOUT=$3
 LEFT=$4
 RIGHT=$5
+BREAK_ON_FAILURE=$6
 
 GREEN='\033[0;32m'
 RED='\033[0;31m'
@@ -66,7 +67,9 @@ while (( $LEFT < $RIGHT )); do
     echo -n "... "
     grep "healthy?: 0" $LOG_FILE &>/dev/null
     if [[ $? -eq 0 ]]; then
-      break
+      if [[ "$BREAK_ON_FAILURE" -eq "1" ]]; then
+        break
+      fi
     fi
   done
   echo "DONE!"
