@@ -63,7 +63,7 @@ while (( $LEFT < $RIGHT )); do
 
   # Wait 30 minutes or until a health check fails.
   for (( j = 0; j < 31; j++ )); do
-    sleep 30
+    sleep 60
     echo -n "... "
     grep "healthy?: 0" $LOG_FILE &>/dev/null
     if [[ $? -eq 0 ]]; then
